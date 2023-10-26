@@ -18,9 +18,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 set(CMAKE_MODULE_LINKER_FLAGS_INIT "-rdynamic -Wl,--export-dynamic -Wl,--enable-new-dtags -Wl,--as-needed -Wl,-z,defs")
 set(CMAKE_MODULE_LINKER_FLAGS_RELEASE_INIT "-Wl,--gc-sections -Wl,-z,combreloc")
 
-project(
-  irods_project_template_cpp_api_plugin
-  VERSION "${IRODS_VERSION}"
+project(irods_project_template_cpp_api_plugin
+  VERSION "${IRODS_PLUGIN_VERSION}"
   LANGUAGES CXX)
 
 set(CMAKE_SKIP_BUILD_RPATH OFF)
