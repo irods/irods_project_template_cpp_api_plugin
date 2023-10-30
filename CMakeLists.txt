@@ -22,7 +22,7 @@ project(irods_project_template_cpp_api_plugin
   VERSION "${IRODS_PLUGIN_VERSION}"
   LANGUAGES CXX)
 
-include(${IRODS_TARGETS_PATH})
+include("${IRODS_TARGETS_PATH}")
 
 # Include this module to inherit iRODS's defaults for RPATH/RUNPATH handling
 include(IrodsRunpathDefaults)
@@ -59,8 +59,8 @@ foreach (IRODS_MODULE_VARIANT IN ITEMS client server)
   add_library(
     ${IRODS_MODULE_NAME}
     MODULE
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/${IRODS_MODULE_VARIANT}.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/plugin_factory.cpp)
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/${IRODS_MODULE_VARIANT}.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/plugin_factory.cpp")
   
   target_compile_definitions(
     ${IRODS_MODULE_NAME}
@@ -71,12 +71,12 @@ foreach (IRODS_MODULE_VARIANT IN ITEMS client server)
   target_include_directories(
     ${IRODS_MODULE_NAME}
     PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${IRODS_INCLUDE_DIRS}
-    ${IRODS_EXTERNALS_FULLPATH_BOOST}/include
-    ${IRODS_EXTERNALS_FULLPATH_FMT}/include
-    ${IRODS_EXTERNALS_FULLPATH_NANODBC}/include
-    ${IRODS_EXTERNALS_FULLPATH_SPDLOG}/include)
+    "${CMAKE_CURRENT_SOURCE_DIR}/include"
+    "${IRODS_EXTERNALS_FULLPATH_BOOST}/include"
+    "${IRODS_EXTERNALS_FULLPATH_FMT}/include"
+    "${IRODS_EXTERNALS_FULLPATH_NANODBC}/include"
+    "${IRODS_EXTERNALS_FULLPATH_SPDLOG}/include")
   
   target_link_libraries(
     ${IRODS_MODULE_NAME}
@@ -84,7 +84,7 @@ foreach (IRODS_MODULE_VARIANT IN ITEMS client server)
     irods_plugin_dependencies
     irods_common
     irods_${IRODS_MODULE_VARIANT}
-    ${IRODS_EXTERNALS_FULLPATH_FMT}/lib/libfmt.so)
+    "${IRODS_EXTERNALS_FULLPATH_FMT}/lib/libfmt.so")
 
   install(
     TARGETS ${IRODS_MODULE_NAME}
@@ -113,18 +113,18 @@ install(
 #add_library(
 #  ${IRODS_PLUGIN_INVOCATION_FUNCTIONS}
 #  SHARED
-#  ${CMAKE_CURRENT_SOURCE_DIR}/src/rc_project_template.cpp
-#  ${CMAKE_CURRENT_SOURCE_DIR}/src/rs_project_template.cpp)
+#  "${CMAKE_CURRENT_SOURCE_DIR}/src/rc_project_template.cpp"
+#  "${CMAKE_CURRENT_SOURCE_DIR}/src/rs_project_template.cpp")
 #
 #target_include_directories(
 #  ${IRODS_MODULE_NAME}
 #  PRIVATE
-#  ${CMAKE_CURRENT_SOURCE_DIR}/include
 #  ${IRODS_INCLUDE_DIRS}
-#  #${IRODS_EXTERNALS_FULLPATH_BOOST}/include
-#  #${IRODS_EXTERNALS_FULLPATH_FMT}/include
-#  #${IRODS_EXTERNALS_FULLPATH_NANODBC}/include
-#  #${IRODS_EXTERNALS_FULLPATH_SPDLOG}/include)
+#  "${CMAKE_CURRENT_SOURCE_DIR}/include"
+#  #"${IRODS_EXTERNALS_FULLPATH_BOOST}/include"
+#  #"${IRODS_EXTERNALS_FULLPATH_FMT}/include"
+#  #"${IRODS_EXTERNALS_FULLPATH_NANODBC}/include"
+#  #"${IRODS_EXTERNALS_FULLPATH_SPDLOG}/include")
 #  )
 #
 #target_link_libraries(
