@@ -59,8 +59,8 @@ foreach (IRODS_MODULE_VARIANT IN ITEMS client server)
   add_library(
     ${IRODS_MODULE_NAME}
     MODULE
-    ${CMAKE_SOURCE_DIR}/src/${IRODS_MODULE_VARIANT}.cpp
-    ${CMAKE_SOURCE_DIR}/src/plugin_factory.cpp)
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/${IRODS_MODULE_VARIANT}.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/plugin_factory.cpp)
   
   target_compile_definitions(
     ${IRODS_MODULE_NAME}
@@ -71,7 +71,7 @@ foreach (IRODS_MODULE_VARIANT IN ITEMS client server)
   target_include_directories(
     ${IRODS_MODULE_NAME}
     PRIVATE
-    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${IRODS_INCLUDE_DIRS}
     ${IRODS_EXTERNALS_FULLPATH_BOOST}/include
     ${IRODS_EXTERNALS_FULLPATH_FMT}/include
@@ -100,9 +100,9 @@ target_compile_definitions(
 
 install(
   FILES
-  "${CMAKE_SOURCE_DIR}/include/irods/plugins/api/project_template_common.h"
-  #"${CMAKE_SOURCE_DIR}/include/irods/plugins/api/rc_project_template.h"
-  #"${CMAKE_SOURCE_DIR}/include/irods/plugins/api/rs_project_template.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/include/irods/plugins/api/project_template_common.h"
+  #"${CMAKE_CURRENT_SOURCE_DIR}/include/irods/plugins/api/rc_project_template.h"
+  #"${CMAKE_CURRENT_SOURCE_DIR}/include/irods/plugins/api/rs_project_template.hpp"
   DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/irods/plugins/api")
 
 # TODO Figure out how to ship the convenience headers/implementations for invoking the API plugin.
@@ -113,13 +113,13 @@ install(
 #add_library(
 #  ${IRODS_PLUGIN_INVOCATION_FUNCTIONS}
 #  SHARED
-#  ${CMAKE_SOURCE_DIR}/src/rc_project_template.cpp
-#  ${CMAKE_SOURCE_DIR}/src/rs_project_template.cpp)
+#  ${CMAKE_CURRENT_SOURCE_DIR}/src/rc_project_template.cpp
+#  ${CMAKE_CURRENT_SOURCE_DIR}/src/rs_project_template.cpp)
 #
 #target_include_directories(
 #  ${IRODS_MODULE_NAME}
 #  PRIVATE
-#  ${CMAKE_SOURCE_DIR}/include
+#  ${CMAKE_CURRENT_SOURCE_DIR}/include
 #  ${IRODS_INCLUDE_DIRS}
 #  #${IRODS_EXTERNALS_FULLPATH_BOOST}/include
 #  #${IRODS_EXTERNALS_FULLPATH_FMT}/include
@@ -147,7 +147,7 @@ set(CPACK_COMPONENTS_GROUPING IGNORE)
 set(CPACK_DEB_COMPONENT_INSTALL OFF)
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS OFF)
 set(CPACK_DEBIAN_PACKAGE_CONTROL_STRICT_PERMISSION ON)
-#set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_SOURCE_DIR}/packaging/postinst;")
+#set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_CURRENT_SOURCE_DIR}/packaging/postinst;")
 #set(CPACK_DEBIAN_PACKAGE_BREAKS ${IRODS_PLUGIN_PACKAGE_NAME})
 #set(CPACK_DEBIAN_PACKAGE_REPLACES ${IRODS_PLUGIN_PACKAGE_NAME})
 set(CPACK_DEBIAN_PACKAGE_RELEASE "${IRODS_PACKAGE_REVISION}")
@@ -161,7 +161,7 @@ set(CPACK_RPM_PACKAGE_LICENSE "BSD-3-Clause")
 set(CPACK_RPM_PACKAGE_AUTOREQ 0)
 set(CPACK_RPM_PACKAGE_AUTOPROV 0)
 #set(CPACK_RPM_PACKAGE_OBSOLETES ${IRODS_PLUGIN_PACKAGE_NAME})
-#set(CPACK_RPM_POST_INSTALL_SCRIPT_FILE "${CMAKE_SOURCE_DIR}/packaging/postinst")
+#set(CPACK_RPM_POST_INSTALL_SCRIPT_FILE "${CMAKE_CURRENT_SOURCE_DIR}/packaging/postinst")
 set(CPACK_RPM_PACKAGE_RELEASE "${IRODS_PACKAGE_REVISION}")
 set(CPACK_RPM_FILE_NAME RPM-DEFAULT)
 
