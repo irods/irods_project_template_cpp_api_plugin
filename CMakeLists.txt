@@ -71,7 +71,7 @@ foreach (IRODS_MODULE_VARIANT IN ITEMS client server)
   target_include_directories(
     ${IRODS_MODULE_NAME}
     PRIVATE
-    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+    ${CMAKE_SOURCE_DIR}/include
     ${IRODS_INCLUDE_DIRS}
     ${IRODS_EXTERNALS_FULLPATH_BOOST}/include
     ${IRODS_EXTERNALS_FULLPATH_FMT}/include
@@ -119,7 +119,7 @@ install(
 #target_include_directories(
 #  ${IRODS_MODULE_NAME}
 #  PRIVATE
-#  $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+#  ${CMAKE_SOURCE_DIR}/include
 #  ${IRODS_INCLUDE_DIRS}
 #  #${IRODS_EXTERNALS_FULLPATH_BOOST}/include
 #  #${IRODS_EXTERNALS_FULLPATH_FMT}/include
